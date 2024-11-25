@@ -48,7 +48,6 @@ class Meme(imagePath: String, parent: JFrame) {
             EntrySide.UNDEFINED -> 0
         }
 
-        println(delta)
         if (delta > 0) {
             scale += abs(delta) * scaleFactor
             isScaling = scale > 0.25
