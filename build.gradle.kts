@@ -17,7 +17,7 @@ val junitVersion: String by extra("5.10.3")
 
 application {
     mainModule.set("com.polimerconsumer.gestures24")
-    mainClass.set("com.polimerconsumer.gestures24.HelloApplication")
+    mainClass.set("com.polimerconsumer.gestures24.MemeApplication")
 }
 
 javafx {

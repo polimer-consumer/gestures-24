@@ -21,7 +21,18 @@ fun main() {
 
         frame.addMouseListener(object : MouseAdapter() {
             override fun mouseEntered(e: MouseEvent) {
-                meme.onMouseEnter(e.x, e.y)
+                val bounds = frame.bounds
+                val entrySide = when {
+                    e.x <= 0 -> EntrySide.LEFT
+                    e.x >= bounds.width - 1 -> EntrySide.RIGHT
+                    e.y <= 0 -> EntrySide.TOP
+                    e.y >= bounds.height - 1 -> EntrySide.BOTTOM
+                    else -> EntrySide.UNDEFINED
+                }
+
+                println(entrySide)
+
+                meme.onMouseEnter(e.x, e.y, entrySide)
             }
 
             override fun mouseExited(e: MouseEvent) {

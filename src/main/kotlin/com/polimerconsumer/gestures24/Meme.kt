@@ -16,17 +16,19 @@ class Meme(imagePath: String, parent: JFrame) {
     private var isScaling = true
     private var scale = 0.25
     private var scaleFactor = 0.001
+    private var entrySide = EntrySide.UNDEFINED
 
     init {
         memeLabel.isVisible = false
         parent.add(memeLabel)
     }
 
-    fun onMouseEnter(x: Int, y: Int) {
+    fun onMouseEnter(x: Int, y: Int, side: EntrySide) {
         lastX = x
         lastY = y
         scale = 0.25
         isScaling = true
+        entrySide = side
         updateImageAndPosition(x, y)
         memeLabel.isVisible = true
     }
@@ -38,12 +40,20 @@ class Meme(imagePath: String, parent: JFrame) {
     fun onMouseMove(x: Int, y: Int) {
         if (!memeLabel.isVisible) return
 
-        val dX = x - lastX
-        if (dX > 0) {
-            scale -= abs(dX) * scaleFactor
+        val delta = when (entrySide) {
+            EntrySide.RIGHT -> -(x - lastX)
+            EntrySide.LEFT -> x - lastX
+            EntrySide.TOP -> y - lastY
+            EntrySide.BOTTOM -> -(y - lastY)
+            EntrySide.UNDEFINED -> 0
+        }
+
+        println(delta)
+        if (delta > 0) {
+            scale += abs(delta) * scaleFactor
             isScaling = scale > 0.25
-        } else if (dX < 0) {
-            scale += abs(dX) * scaleFactor
+        } else if (delta < 0) {
+            scale -= abs(delta) * scaleFactor
             isScaling = scale < 1.0
         }
 
