@@ -18,16 +18,23 @@ fun main() {
             ?: throw IllegalArgumentException("Image not found")
 
         val meme = Meme(imagePath, frame)
-        val gap = frame.bounds.height / 70
 
         frame.addMouseListener(object : MouseAdapter() {
             override fun mouseEntered(e: MouseEvent) {
                 val bounds = frame.bounds
-                val entrySide = when {
-                    e.x <= gap -> EntrySide.LEFT
-                    e.x >= bounds.width - gap -> EntrySide.RIGHT
-                    e.y <= frame.insets.top + gap -> EntrySide.TOP
-                    e.y >= bounds.height - gap -> EntrySide.BOTTOM
+                val insets = frame.insets
+                val distanceToLeft = e.x
+                val distanceToRight = bounds.width - e.x
+                val distanceToTop = e.y - insets.top
+                val distanceToBottom = bounds.height - e.y
+
+                val entrySide = when (
+                    minOf(distanceToLeft, distanceToRight, distanceToTop, distanceToBottom)
+                ) {
+                    distanceToLeft -> EntrySide.LEFT
+                    distanceToRight -> EntrySide.RIGHT
+                    distanceToTop -> EntrySide.TOP
+                    distanceToBottom -> EntrySide.BOTTOM
                     else -> EntrySide.UNDEFINED
                 }
 
