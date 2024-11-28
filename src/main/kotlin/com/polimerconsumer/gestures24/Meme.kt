@@ -11,11 +11,13 @@ import kotlin.math.min
 class Meme(imagePath: String, parent: JFrame) {
     private val memeIcon = ImageIcon(imagePath)
     private val memeLabel = JLabel(memeIcon)
+    private val scaleFactor = 0.001
+    private val baseScale = 0.25
+
     private var lastX = -1
     private var lastY = -1
     private var isScaling = true
-    private var scale = 0.25
-    private var scaleFactor = 0.001
+    private var scale = baseScale
     private var entrySide = EntrySide.UNDEFINED
 
     init {
@@ -26,7 +28,7 @@ class Meme(imagePath: String, parent: JFrame) {
     fun onMouseEnter(x: Int, y: Int, side: EntrySide) {
         lastX = x
         lastY = y
-        scale = 0.25
+        scale = baseScale
         isScaling = true
         entrySide = side
         updateImageAndPosition(x, y)
@@ -51,13 +53,13 @@ class Meme(imagePath: String, parent: JFrame) {
 
         if (delta > 0) {
             scale += abs(delta) * scaleFactor
-            isScaling = scale > 0.25
+            isScaling = scale > baseScale
         } else if (delta < 0) {
             scale -= abs(delta) * scaleFactor
             isScaling = scale < 1.0
         }
 
-        scale = min(1.0, max(0.25, scale))
+        scale = min(1.0, max(baseScale, scale))
         updateImageAndPosition(x, y)
 
         lastX = x

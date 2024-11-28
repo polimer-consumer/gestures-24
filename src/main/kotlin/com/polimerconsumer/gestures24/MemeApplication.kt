@@ -18,7 +18,7 @@ fun main() {
             ?: throw IllegalArgumentException("Image not found")
 
         val meme = Meme(imagePath, frame)
-        val gap = 10
+        val gap = frame.bounds.height / 70
 
         frame.addMouseListener(object : MouseAdapter() {
             override fun mouseEntered(e: MouseEvent) {
