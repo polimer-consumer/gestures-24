@@ -2,8 +2,10 @@ package com.polimerconsumer.gestures24
 
 import java.awt.event.MouseAdapter
 import java.awt.event.MouseEvent
+import javax.swing.ImageIcon
 import javax.swing.JFrame
 import javax.swing.SwingUtilities
+import javax.imageio.ImageIO.read
 
 fun main() {
     SwingUtilities.invokeLater {
@@ -14,10 +16,12 @@ fun main() {
             isVisible = true
         }
 
-        val imagePath = {}::class.java.getResource("/memes/tigrib.png")?.path
+        val imageStream = Meme::class.java.getResourceAsStream("/memes/tigrib.png")
             ?: throw IllegalArgumentException("Image not found")
 
-        val meme = Meme(imagePath, frame)
+        val image = read(imageStream)
+        val memeIcon = ImageIcon(image)
+        val meme = Meme(memeIcon, frame)
 
         frame.addMouseListener(object : MouseAdapter() {
             override fun mouseEntered(e: MouseEvent) {

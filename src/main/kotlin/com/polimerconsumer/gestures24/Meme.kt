@@ -8,8 +8,8 @@ import kotlin.math.abs
 import kotlin.math.max
 import kotlin.math.min
 
-class Meme(imagePath: String, parent: JFrame) {
-    private val memeIcon = ImageIcon(imagePath)
+class Meme(image: ImageIcon, parent: JFrame) {
+    private val memeIcon = image
     private val memeLabel = JLabel(memeIcon)
     private val scaleFactor = 0.001
     private val baseScale = 0.25
@@ -41,7 +41,6 @@ class Meme(imagePath: String, parent: JFrame) {
 
     fun onMouseMove(x: Int, y: Int) {
         if (!memeLabel.isVisible) return
-        println(y)
 
         val delta = when (entrySide) {
             EntrySide.RIGHT -> -(x - lastX)
