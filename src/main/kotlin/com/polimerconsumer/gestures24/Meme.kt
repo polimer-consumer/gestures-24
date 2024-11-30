@@ -5,6 +5,13 @@ import javax.swing.ImageIcon
 import javax.swing.JFrame
 import javax.swing.JLabel
 
+/**
+ * Class that represents mem (lol :0 ), implements ScalablePanel. Meme scales
+ * and moves based on mouse movement and rules in test task description.
+ *
+ * @param memeIcon meme image
+ * @param parent parent JFrame into which meme is added
+ */
 class Meme(
     private val memeIcon: ImageIcon, parent: JFrame
 ) : ScalablePanel() {
