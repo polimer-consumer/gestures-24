@@ -42,8 +42,6 @@ fun main() {
                     else -> EntrySide.UNDEFINED
                 }
 
-                println(entrySide)
-
                 meme.onMouseEnter(e.x, e.y, entrySide)
             }
 
