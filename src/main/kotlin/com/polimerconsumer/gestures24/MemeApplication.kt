@@ -10,7 +10,7 @@ import javax.imageio.ImageIO.read
 fun main() {
     SwingUtilities.invokeLater {
         val frame = JFrame("Base window").apply {
-            defaultCloseOperation = JFrame.EXIT_ON_CLOSE
+            defaultCloseOperation = JFrame.DISPOSE_ON_CLOSE
             setSize(1080, 720)
             layout = null
             isVisible = true
