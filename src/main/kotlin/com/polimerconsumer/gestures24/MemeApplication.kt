@@ -2,10 +2,10 @@ package com.polimerconsumer.gestures24
 
 import java.awt.event.MouseAdapter
 import java.awt.event.MouseEvent
-import javax.swing.ImageIcon
+import java.awt.event.WindowAdapter
+import java.awt.event.WindowEvent
 import javax.swing.JFrame
 import javax.swing.SwingUtilities
-import javax.imageio.ImageIO.read
 
 fun main() {
     SwingUtilities.invokeLater {
@@ -16,12 +16,7 @@ fun main() {
             isVisible = true
         }
 
-        val imageStream = Meme::class.java.getResourceAsStream("/memes/tigrib.png")
-            ?: throw IllegalArgumentException("Image not found")
-
-        val image = read(imageStream)
-        val memeIcon = ImageIcon(image)
-        val meme = Meme(memeIcon, frame)
+        val handler = HeavyPanelHandler(frame)
 
         frame.addMouseListener(object : MouseAdapter() {
             override fun mouseEntered(e: MouseEvent) {
@@ -41,19 +36,28 @@ fun main() {
                     distanceToBottom -> EntrySide.BOTTOM
                     else -> EntrySide.UNDEFINED
                 }
+                println(entrySide)
 
-                meme.onMouseEnter(e.x, e.y, entrySide)
+                handler.onMouseEnter(e.x, e.y, entrySide)
             }
 
             override fun mouseExited(e: MouseEvent) {
-                meme.onMouseExit()
+                handler.onMouseExit()
             }
         })
 
         frame.addMouseMotionListener(object : MouseAdapter() {
             override fun mouseMoved(e: MouseEvent) {
-                meme.onMouseMove(e.x, e.y)
+                handler.onMouseMove(e.x, e.y)
             }
         })
+
+        frame.addWindowListener(object : WindowAdapter() {
+            override fun windowClosing(e: WindowEvent?) {
+                handler.cleanup()
+                frame.defaultCloseOperation = JFrame.DISPOSE_ON_CLOSE
+            }
+        })
+
     }
 }
