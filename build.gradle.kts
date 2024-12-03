@@ -18,7 +18,7 @@ repositories {
     }
 }
 
-val junitVersion: String by extra("5.10.3")
+val junitVersion: String by extra("5.11.0")
 
 application {
     mainModule.set("com.polimerconsumer.gestures24")
@@ -36,6 +36,12 @@ dependencies {
     implementation("org.jetbrains.kotlin:kotlin-stdlib")
     implementation("org.openjfx:javafx-controls:17")
     implementation("org.openjfx:javafx-fxml:17")
+    // for UI tests
+    testImplementation("org.mockito:mockito-core:5.11.0")
+    testImplementation("org.mockito:mockito-inline:5.2.0")
+    testImplementation("org.mockito:mockito-junit-jupiter:5.11.0")
+    testImplementation(kotlin("test"))
+
 
     intellijPlatform {
         intellijIdeaCommunity("2023.3")

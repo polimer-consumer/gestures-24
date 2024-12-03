@@ -14,7 +14,9 @@ abstract class ScalablePanel(
     private val scaleFactor: Double = 0.001,
     private val baseScale: Double = 0.25
 ) {
-    protected var scale = baseScale
+    var scale = baseScale
+        protected set
+
     private var lastX = -1
     private var lastY = -1
     private var entrySide = EntrySide.UNDEFINED
