@@ -18,7 +18,7 @@ class HeavyPanelHandler(
     private var lastX = -1
     private var lastY = -1
     private var entrySide = EntrySide.UNDEFINED
-    private val coroutineScope = CoroutineScope(Dispatchers.Main)
+    private val coroutineScope = CoroutineScope(Dispatchers.Default)
 
     private val baseWidth = 200
     private val baseHeight = 200
