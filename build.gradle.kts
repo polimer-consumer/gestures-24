@@ -8,7 +8,7 @@ plugins {
 }
 
 group = "com.polimerconsumer"
-version = "1.0-SNAPSHOT"
+version = "heavy-panel"
 
 repositories {
     mavenCentral()
