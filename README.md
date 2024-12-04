@@ -15,7 +15,8 @@ that is rendered as template while it is initializing and seamlessly changes
 to full version after init completes.
 
 ## How to Use
-1. Install the plugin in IntelliJ IDEA (from .zip)
+1. Install the plugin in IntelliJ IDEA (from .zip) - 
+you can download both plugin versions from releases tab
 2. Use any of the following methods to launch the plugin:
     - **Keyboard Shortcut**: Press `Ctrl + Alt + M`
     - **Menu**: Navigate to `Tools > Open Meme`
